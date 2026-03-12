@@ -23,6 +23,8 @@ feature1 = st.number_input("Feature 1", value=0.0)
 feature2 = st.number_input("Feature 2", value=0.0)
 feature3 = st.number_input("Feature 3", value=0.0)
 feature4 = st.number_input("Feature 4", value=0.0)
+feature5 = st.number_input("Feature 5", value=0.0)
+feature6 = st.number_input("Feature 6", value=0.0)
 
 # Prediction button
 if st.button("Predict"):
@@ -33,4 +35,5 @@ if st.button("Predict"):
         prediction = model.predict(input_data)
         st.success(f"Prediction: {prediction[0]}")
     except Exception as e:
+
         st.error(f"Error during prediction: {e}")
