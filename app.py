@@ -19,14 +19,14 @@ model = load_model()
 st.subheader("Input Features")
 
 # Example input fields (modify based on your dataset)
-age = st.number_input("Age")
+age = st.number_input("Age", min_value=0, step=1, format="%d")
 
 sex = st.selectbox(
     "Sex",
     ["Male", "Female"]
 )
 
-bmi = st.number_input("BMI")
+bmi = st.number_input("BMI", min_value=0.0, format="%.2f")
 
 children = st.number_input(
     "Number of Children",
@@ -64,3 +64,4 @@ if st.button("Predict"):
     prediction = model.predict(input_data)
 
     st.success(f"Predicted Insurance Cost: {prediction[0]}")
+
