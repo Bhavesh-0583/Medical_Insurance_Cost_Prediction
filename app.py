@@ -3,9 +3,9 @@ import pickle
 import numpy as np
 
 # Page configuration
-st.set_page_config(page_title="ML Prediction App", layout="centered")
+st.set_page_config(page_title="Medical Insurance Prediction App", layout="centered")
 
-st.title("Machine Learning Prediction App")
+st.title("Medical Insurance Prediction App")
 st.write("Enter the input values to make a prediction.")
 
 # Load trained model
@@ -64,4 +64,5 @@ if st.button("Predict"):
     prediction = model.predict(input_data)
 
     st.success(f"Predicted Insurance Cost: {prediction[0]}")
+
 
