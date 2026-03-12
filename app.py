@@ -19,21 +19,48 @@ model = load_model()
 st.subheader("Input Features")
 
 # Example input fields (modify based on your dataset)
-feature1 = st.number_input("Feature 1", value=0.0)
-feature2 = st.number_input("Feature 2", value=0.0)
-feature3 = st.number_input("Feature 3", value=0.0)
-feature4 = st.number_input("Feature 4", value=0.0)
-feature5 = st.number_input("Feature 5", value=0.0)
-feature6 = st.number_input("Feature 6", value=0.0)
+age = st.number_input("Age")
+
+sex = st.selectbox(
+    "Sex",
+    ["Male", "Female"]
+)
+
+bmi = st.number_input("BMI")
+
+children = st.number_input(
+    "Number of Children",
+    min_value=0,
+    step=1
+)
+
+smoker = st.selectbox(
+    "Smoker",
+    ["Yes", "No"]
+)
+
+region = st.selectbox(
+    "Region",
+    ["Southwest","Southeast","Northwest","Northeast"]
+)
+
+sex = 1 if sex == "Male" else 0
+smoker = 1 if smoker == "Yes" else 0
+
+region_map = {
+    "Southwest":0,
+    "Southeast":1,
+    "Northwest":2,
+    "Northeast":3
+}
+
+region = region_map[region]
 
 # Prediction button
 if st.button("Predict"):
 
-    input_data = np.array([[feature1, feature2, feature3, feature4]])
+    input_data = [[age, sex, bmi, children, smoker, region]]
 
-    try:
-        prediction = model.predict(input_data)
-        st.success(f"Prediction: {prediction[0]}")
-    except Exception as e:
+    prediction = model.predict(input_data)
 
-        st.error(f"Error during prediction: {e}")
+    st.success(f"Predicted Insurance Cost: {prediction[0]}")
